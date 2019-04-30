@@ -2,7 +2,7 @@ FROM microsoft/aspnetcore:2.0
 
 WORKDIR /app
 
-COPY ./MyApplication/TestApp/publish .
+COPY ./TestApp/bin/Release/netcoreapp2.1 .
 
 ENTRYPOINT ["dotnet", "TestApp.dll"]
 
