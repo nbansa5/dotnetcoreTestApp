@@ -10,11 +10,13 @@ COPY ./TestApp/bin/Release/netcoreapp2.1 .
 RUN rm /etc/nginx/nginx.conf
 COPY nginx.conf /etc/nginx
 
-service nginx start
-
 ENTRYPOINT ["dotnet", "TestApp.dll"]
 
 ENV ASPNETCORE_URLS http://+:5000
 EXPOSE 5000 80
+
+CMD ["sh", "/app/startup.sh"]
+
+
 
    
