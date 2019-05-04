@@ -10,8 +10,8 @@ COPY /TestApp/publishedApp /app
 #RUN rm /etc/nginx/nginx.conf
 #COPY nginx.conf /etc/nginx
 
-ENV ASPNETCORE_URLS http://+:8080
-EXPOSE 8080
+ENV ASPNETCORE_URLS http://+:80
+EXPOSE 80
 
 ENTRYPOINT ["dotnet", "TestApp.dll"]
 
