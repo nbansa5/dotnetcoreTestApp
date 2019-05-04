@@ -1,9 +1,9 @@
 #!/bin/bash
-
+echo "Inside Script"
 set -e
 
 # possible -b (base / app name) -i (image version), -e (deploy env) and -s (service id)
-while getopts b:i:e:s: option
+while getopts t:s:c:i: option
 do
 case "${option}"
 in
