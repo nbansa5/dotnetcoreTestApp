@@ -27,7 +27,7 @@ $CONTAINER_DEFINITION_FILE | sed -e "s/\$IMGAGE_PACEHOLDER/$IMAGE_VERSION/g"
 echo "Modified CONTAINER_DEFINITION_FILE: " $CONTAINER_DEFINITION_FILE
 
 
-export TASK_VERSION=$(aws ecs register-task-definition --family ${TASK_FAMILY} --container-definitions "$CONTAINER_DEFINITION" | jq --raw-output '.taskDefinition.revision')
+export TASK_VERSION=$(aws ecs register-task-definition --family ${TASK_FAMILY} --container-definitions "$CONTAINER_DEFINITION"')
 echo "Registered ECS Task Definition: " $TASK_VERSION
 
 
@@ -36,7 +36,7 @@ if [ -n "$TASK_VERSION" ]; then
     echo "Service: " $SERVICE_NAME
     echo "Task Definition: " $TASK_FAMILY:$TASK_VERSION
     
-    DEPLOYED_SERVICE=$(aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --task-definition $TASK_FAMILY:$TASK_VERSION | jq --raw-output '.service.serviceName')
+    DEPLOYED_SERVICE=$(aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --task-definition $TASK_FAMILY:$TASK_VERSION')
     echo "Deployment of $DEPLOYED_SERVICE complete"
 
 else
