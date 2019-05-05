@@ -30,10 +30,13 @@ CONTAINER_DEFINITION_FILE=$(cat Container-Definition.json)
 #export TASK_VERSION=$(aws ecs register-task-definition --family ${TASK_FAMILY} --container-definitions $CONTAINER_DEFINITION_FILE)
 TASK_VERSION=$(aws ecs register-task-definition --cli-input-json file://./Container-Definition.json)
 echo "Registered ECS Task Definition: " $TASK_VERSION
-IFS=',' read -ra NAMES <<< "$TASK_VERSION"
-for i in "${NAMES[@]}"; do
-    echo $i
-done 
+SUBSTRING=$(echo $TASK_VERSION| cut -d',' -f 17)
+echo $SUBSTRING
+
+#IFS=',' read -ra NAMES <<< "$TASK_VERSION"
+#for i in "${NAMES[@]}"; do
+#    echo $i
+#done 
 
 if [ -n "$TASK_VERSION" ]; then
     #echo "Update ECS Cluster: " $CLUSTER_NAME
