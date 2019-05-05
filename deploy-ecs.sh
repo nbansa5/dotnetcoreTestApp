@@ -22,9 +22,9 @@ echo "IMAGE_VERSION: " $IMAGE_VERSION
 IMGAGE_PACEHOLDER="<IMGAGE_VERSION>"
 
 CONTAINER_DEFINITION_FILE=$(cat Container-Definition.json)
-echo "CONTAINER_DEFINITION_FILE: " $CONTAINER_DEFINITION_FILE
+#echo "CONTAINER_DEFINITION_FILE: " $CONTAINER_DEFINITION_FILE
 #CONTAINER_DEFINITION_FILE=$( echo "$CONTAINER_DEFINITION_FILE" | tr $IMGAGE_PACEHOLDER $IMAGE_VERSION)
-echo "Modified CONTAINER_DEFINITION_FILE: " $CONTAINER_DEFINITION_FILE
+#echo "Modified CONTAINER_DEFINITION_FILE: " $CONTAINER_DEFINITION_FILE
 
 
 #export TASK_VERSION=$(aws ecs register-task-definition --family ${TASK_FAMILY} --container-definitions $CONTAINER_DEFINITION_FILE)
@@ -33,11 +33,11 @@ echo "Registered ECS Task Definition: " $TASK_VERSION
 
 
 if [ -n "$TASK_VERSION" ]; then
-    echo "Update ECS Cluster: " $CLUSTER_NAME
-    echo "Service: " $SERVICE_NAME
-    echo "Task Definition: " $TASK_FAMILY:$TASK_VERSION
+    #echo "Update ECS Cluster: " $CLUSTER_NAME
+    #echo "Service: " $SERVICE_NAME
+    #echo "Task Definition: " $TASK_FAMILY:$TASK_VERSION
     
-    DEPLOYED_SERVICE=$(aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --task-definition $TASK_FAMILY:$TASK_VERSION)
+    DEPLOYED_SERVICE=$(aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --task-definition $TASK_FAMILY:14)
     echo "Deployment of $DEPLOYED_SERVICE complete"
 
 else
