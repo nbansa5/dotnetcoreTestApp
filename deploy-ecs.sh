@@ -36,8 +36,8 @@ if [ -n "$TASK_VERSION" ]; then
     #echo "Update ECS Cluster: " $CLUSTER_NAME
     #echo "Service: " $SERVICE_NAME
     #echo "Task Definition: " $TASK_FAMILY:$TASK_VERSION
-    
-    DEPLOYED_SERVICE=$(aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --task-definition $TASK_FAMILY:14 --force-new-deployment true)
+    FORCE_NEW_DEPLOYMENT = true
+    DEPLOYED_SERVICE=$(aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --task-definition $TASK_FAMILY:14 --force-new-deployment $FORCE_NEW_DEPLOYMENT)
     echo "Deployment of $DEPLOYED_SERVICE complete"
 
 else
