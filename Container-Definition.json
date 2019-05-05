@@ -1,5 +1,4 @@
-[
-    {
+   {
       "dnsSearchDomains": null,
       "logConfiguration": null,
       "entryPoint": null,
@@ -43,4 +42,3 @@
       "privileged": null,
       "name": "donetcore"
     }
-  ]
