@@ -30,8 +30,10 @@ CONTAINER_DEFINITION_FILE=$(cat Container-Definition.json)
 #export TASK_VERSION=$(aws ecs register-task-definition --family ${TASK_FAMILY} --container-definitions $CONTAINER_DEFINITION_FILE)
 TASK_VERSION=$(aws ecs register-task-definition --cli-input-json file://./Container-Definition.json)
 echo "Registered ECS Task Definition: " $TASK_VERSION
-SUBSTRING=$(echo $TASK_VERSION| cut -d',' -f 17)
+SUBSTRING=$(echo $TASK_VERSION| cut -d',' -f 20)
 echo $SUBSTRING
+
+echo {$SUBSTRING:10}
 
 #IFS=',' read -ra NAMES <<< "$TASK_VERSION"
 #for i in "${NAMES[@]}"; do
