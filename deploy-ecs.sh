@@ -27,7 +27,7 @@ CONTAINER_DEFINITION_FILE=$( echo "$CONTAINER_DEFINITION_FILE" | tr $IMGAGE_PACE
 echo "Modified CONTAINER_DEFINITION_FILE: " $CONTAINER_DEFINITION_FILE
 
 
-export TASK_VERSION=$(aws ecs register-task-definition --family ${TASK_FAMILY} --container-definitions $CONTAINER_DEFINITION)
+export TASK_VERSION=$(aws ecs register-task-definition --family ${TASK_FAMILY} --container-definitions $CONTAINER_DEFINITION_FILE)
 echo "Registered ECS Task Definition: " $TASK_VERSION
 
 
