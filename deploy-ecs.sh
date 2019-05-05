@@ -31,12 +31,15 @@ CONTAINER_DEFINITION_FILE=$(cat Container-Definition.json)
 TASK_VERSION=$(aws ecs register-task-definition --cli-input-json file://./Container-Definition.json)
 echo "Registered ECS Task Definition: " $TASK_VERSION
 
+VERSION = $TASK_VERSION | grep -b -o revision
 
+echo $VERSION
+echo ${TASK_VERSION:VERSION+11:2}  
 if [ -n "$TASK_VERSION" ]; then
     #echo "Update ECS Cluster: " $CLUSTER_NAME
     #echo "Service: " $SERVICE_NAME
     #echo "Task Definition: " $TASK_FAMILY:$TASK_VERSION
-    DEPLOYED_SERVICE=$(aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --task-definition $TASK_FAMILY:14 --force-new-deployment)
+    DEPLOYED_SERVICE=$(aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --task-definition $TASK_FAMILY:$VERSION --force-new-deployment)
     echo "Deployment of $DEPLOYED_SERVICE complete"
 
 else
