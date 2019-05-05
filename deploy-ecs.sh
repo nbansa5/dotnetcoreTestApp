@@ -31,9 +31,7 @@ CONTAINER_DEFINITION_FILE=$(cat Container-Definition.json)
 TASK_VERSION=$(aws ecs register-task-definition --cli-input-json file://./Container-Definition.json)
 echo "Registered ECS Task Definition: " $TASK_VERSION
 
-echo $TASK_VERSION | grep -b -o revision
-
-echo ${TASK_VERSION:$TASK_VERSION | grep -b -o revision:2}  
+echo ${TASK_VERSION:638:2}  
 if [ -n "$TASK_VERSION" ]; then
     #echo "Update ECS Cluster: " $CLUSTER_NAME
     #echo "Service: " $SERVICE_NAME
