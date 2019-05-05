@@ -32,9 +32,10 @@ TASK_VERSION=$(aws ecs register-task-definition --cli-input-json file://./Contai
 echo "Registered ECS Task Definition: " $TASK_VERSION
 SUBSTRING=$(echo $TASK_VERSION| cut -d',' -f 20)
 SUBSTRING=$(echo $SUBSTRING| cut -d':' -f 2)
+SUBSTRING=$(echo $SUBSTRING| cut -d'}' -f 1)
 echo $SUBSTRING
 
-echo ${SUBSTRING:0,2}
+#echo ${SUBSTRING:0,2}
 
 #IFS=',' read -ra NAMES <<< "$TASK_VERSION"
 #for i in "${NAMES[@]}"; do
@@ -45,7 +46,7 @@ if [ -n "$TASK_VERSION" ]; then
     #echo "Update ECS Cluster: " $CLUSTER_NAME
     #echo "Service: " $SERVICE_NAME
     #echo "Task Definition: " $TASK_FAMILY:$TASK_VERSION
-    DEPLOYED_SERVICE=$(aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --task-definition $TASK_FAMILY:25 --force-new-deployment)
+    DEPLOYED_SERVICE=$(aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --task-definition $TASK_FAMILY:$SUBSTRING --force-new-deployment)
     echo "Deployment of $DEPLOYED_SERVICE complete"
 
 else
