@@ -25,6 +25,7 @@ CONTAINER_DEFINITION_FILE=$(cat Container-Definition.json)
 echo "CONTAINER_DEFINITION_FILE: " $CONTAINER_DEFINITION_FILE
 CONTAINER_DEFINITION_FILE=${CONTAINER_DEFINITION_FILE//$IMGAGE_PACEHOLDER/$IMAGE_VERSION}
 echo "Modified CONTAINER_DEFINITION_FILE: " $CONTAINER_DEFINITION_FILE
+echo $(rm Container-Definition.json)
 echo $CONTAINER_DEFINITION_FILE | tee Container-Definition.json
 
 #export TASK_VERSION=$(aws ecs register-task-definition --family ${TASK_FAMILY} --container-definitions $CONTAINER_DEFINITION_FILE )
