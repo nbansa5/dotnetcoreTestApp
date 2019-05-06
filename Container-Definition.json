@@ -14,7 +14,7 @@
       "memory": 500,
       "memoryReservation": 128,
       "volumesFrom": [],
-      "image": "nbansa5/dotnetcore-ecs:<IMGAGE_VERSION>",
+      "image": "nbansa5/dotnetcore-ecs:120",
       "essential": true,
       "name": "donetcore"
     }
