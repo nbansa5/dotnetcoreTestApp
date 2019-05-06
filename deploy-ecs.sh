@@ -28,7 +28,7 @@ echo "Modified CONTAINER_DEFINITION_FILE: " $CONTAINER_DEFINITION_FILE
 
 
 #export TASK_VERSION=$(aws ecs register-task-definition --family ${TASK_FAMILY} --container-definitions $CONTAINER_DEFINITION_FILE )
-TASK_VERSION=$(aws ecs register-task-definition --region us-east-1 --cli-input-json file://./Container-Definition.json)
+TASK_VERSION=$(aws ecs register-task-definition --cli-input-json file://./Container-Definition.json)
 echo "Registered ECS Task Definition: " $TASK_VERSION
 SUBSTRING=$(echo $TASK_VERSION| cut -d',' -f 20)
 SUBSTRING=$(echo $SUBSTRING| cut -d':' -f 2)
